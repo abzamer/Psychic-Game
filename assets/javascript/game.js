@@ -14,7 +14,7 @@ console.log("What you have left");
 
 //this will track what key the user pressed
 document.onkeyup = function(event) {
-    var userGuesses = event.key;
+    var userGuesses = event.key.toLowerCase();
     console.log(userGuesses);
     guesses.textContent = userGuesses;
 };
