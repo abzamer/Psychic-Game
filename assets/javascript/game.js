@@ -15,9 +15,14 @@ console.log("What you have left");
 //this will track what key the user pressed
 document.onkeyup = function(event) {
     var userGuesses = event.key.toLowerCase();
-    console.log(userGuesses);
     guesses.textContent = userGuesses;
 };
+
+//computer will choose a random letter
+var computerChoice = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var computerChoice = computerChoice[Math.floor(Math.random()* computerChoice.length)];
+console.log(computerChoice);
+
 
 
 
