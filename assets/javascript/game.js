@@ -1,11 +1,27 @@
-//refer to activity 34. for this first step
+ //variables to hold wins, losses, guesses left
+var userWins = 0;
+var userLosses = 0;
+var guessesLeft = 9;
+
+//get id and link to js/html
+var userWins= document.getElementById("wins");
+console.log("These are user wins");
+var userLosses = document.getElementById("losses");
+console.log("These are the user losses");
+var guessesLeft = document.getElementById("guessesLeft");
+console.log("What you have left");
+
 //this will track what key the user pressed
+document.onkeyup = function(event) {
+    var userGuesses = event.key;
+    console.log(userGuesses);
+}
 
-var userChoice = event.key.toLowerCase();
-console.log(userChoice);
+// var userChoice = event.key.toLowerCase();
+// console.log(userChoice);
 
 
-//checck order: this will compare the userChoice to computerChoice & If userChoice is wrong, subtract one from guessesLeft
+//check order: this will compare the userChoice to computerChoice & If userChoice is wrong, subtract one from guessesLeft
 
 
 
