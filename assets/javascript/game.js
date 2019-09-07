@@ -4,6 +4,10 @@ var userLosses = 0;
 var guessesLeft = 9;
 var userGuesses;
 
+//computerChoice
+var computerChoice = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var userGuesses = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
 //get id and link to js/html
 var userWins= document.getElementById("wins");
 console.log("These are user wins");
@@ -18,17 +22,19 @@ document.onkeyup = function(event) {
     guesses.textContent = userGuesses;
 };
 
-//computer will choose a random letter
-var computerChoice = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+//computer will choose a random letter & print to console.log & determine outcome
 var computerChoice = computerChoice[Math.floor(Math.random()* computerChoice.length)];
 console.log(computerChoice);
+// if (userGuesses === computerChoice) {
+//     userWins++;
+//     console.log("You won!");
+// } else {
+//     userLosses++;
+//     console.log("Not Today!");
+// }
 
+// this will display points.    userWins.textContent = userWins;
 
-
-
-
-// var userChoice = event.key.toLowerCase();
-// console.log(userChoice);
 
 
 //check order: this will compare the userChoice to computerChoice & If userChoice is wrong, subtract one from guessesLeft
