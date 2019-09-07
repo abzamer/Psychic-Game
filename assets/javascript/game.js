@@ -2,6 +2,7 @@
 var userWins = 0;
 var userLosses = 0;
 var guessesLeft = 9;
+var userGuesses;
 
 //get id and link to js/html
 var userWins= document.getElementById("wins");
@@ -15,7 +16,11 @@ console.log("What you have left");
 document.onkeyup = function(event) {
     var userGuesses = event.key;
     console.log(userGuesses);
-}
+    guesses.textContent = userGuesses;
+};
+
+
+
 
 // var userChoice = event.key.toLowerCase();
 // console.log(userChoice);
