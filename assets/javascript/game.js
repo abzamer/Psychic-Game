@@ -1,64 +1,54 @@
  //variables to hold wins, losses, guesses left
 var userWins = 0;
 var userLosses = 0;
-var guessesLeft = 9;
-var userGuesses;
+let userGuesses = [];
 
+var numTries = 9;
+// var guessesLeft = document.getElementById("guessesLeft");
+// const rootNode = document.getRootNode;
+// console.log(document.getRootNode);
+// guessesLeft.textContent = numTries;
+
+
+ 
 //computerChoice
 var computerChoice = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var userGuesses = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-//get id and link to js/html
-var userWins= document.getElementById("wins");
-console.log("These are user wins");
-var userLosses = document.getElementById("losses");
-console.log("These are the user losses");
-var guessesLeft = document.getElementById("guessesLeft");
-console.log("What you have left");
-
-//this will track what key the user pressed
-document.onkeyup = function(event) {
-    var userGuesses = event.key.toLowerCase();
-    guesses.textContent = userGuesses;
-};
+const validGuesses = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 //computer will choose a random letter & print to console.log & determine outcome
 var computerChoice = computerChoice[Math.floor(Math.random()* computerChoice.length)];
 console.log(computerChoice);
-// if (userGuesses === computerChoice) {
-//     userWins++;
-//     console.log("You won!");
-// } else {
-//     userLosses++;
-//     console.log("Not Today!");
-// }
 
-// this will display points.    userWins.textContent = userWins;
+// functions
+isGuessValid = function(guess) {
+    if(validGuesses.includes(guess)) {
+        console.log("guess: " +  guess + " is considered valid!");
+        return true;
+    }
+    console.log("guess: " + guess + " is not valid!");
+    return false;
+};
 
-
-
-//check order: this will compare the userChoice to computerChoice & If userChoice is wrong, subtract one from guessesLeft
-
-
-
-
-//this will add the letterPressed to "guesses so far"
+//get id and link to js/html
+var userWins= document.getElementById("wins");
+//console.log("These are user wins");
+var userLosses = document.getElementById("losses");
+//console.log("These are the user losses");
 
 
+//record user guess
+document.onkeydown = function(event) {
+    const userGuessKey = event.key.toLowerCase();
+    const isValid = isGuessValid(userGuessKey);
+    if(isValid) {
+        userGuesses.push(userGuessKey);
+        guesses.textContent = userGuesses;
+        // record the user guesses
 
-//I need to make the computer pick a random letter
-
-
-
-
-//if guessesLeft === 0, user loses the game
-
-
-
-//restarts the game & adds 1 to losses
-
-
-
-
-//If userChoice matches computerChoice, Restart game & add 1 to wins
-
+        guessesLeft.innerHTML = numTries;
+        // check if the user guess is correct
+        // if correct, increment wins and reset game
+        // if not correct, decrement numTries
+        // if numTries <= 0, increment losses and reset game
+    }
+};
