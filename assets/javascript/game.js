@@ -1,40 +1,50 @@
  //variables to hold wins, losses, guesses left
 var userWins = 0;
 var userLosses = 0;
-let userGuesses = [];
+var userGuesses = [];
 
 var numTries = 9;
-// var guessesLeft = document.getElementById("guessesLeft");
-// const rootNode = document.getRootNode;
-// console.log(document.getRootNode);
-// guessesLeft.textContent = numTries;
+guessesLeft.innerHTML = numTries;
+wins.innerHTML = userWins;
+losses.innerHTML = userLosses;
 
+//valid choices
+// var computerChoice = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
- 
-//computerChoice
-var computerChoice = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-const validGuesses = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-//computer will choose a random letter & print to console.log & determine outcome
-var computerChoice = computerChoice[Math.floor(Math.random()* computerChoice.length)];
+//computer choice
+var computerChoice;
+createComputerLetter = function(){
+ computerChoice = options[Math.floor(Math.random()* options.length)];
 console.log(computerChoice);
+}
+createComputerLetter();
 
 // functions
 isGuessValid = function(guess) {
-    if(validGuesses.includes(guess)) {
-        console.log("guess: " +  guess + " is considered valid!");
+    if(options.includes(guess)) {
+        // console.log("guess: " +  guess + " is considered valid!");
         return true;
     }
-    console.log("guess: " + guess + " is not valid!");
+    // console.log("guess: " + guess + " is not valid!");
     return false;
 };
 
-//get id and link to js/html
-var userWins= document.getElementById("wins");
-//console.log("These are user wins");
-var userLosses = document.getElementById("losses");
-//console.log("These are the user losses");
+isGuessCorrect = function (userGuess) {
+    if (userGuess === computerChoice) {
+        console.log("You're awesome!");
+        return true;
+    }
+    return false;
+};
 
+isLoss = function(){
+    if(numTries<= 0) {
+        console.log("You LOSE!");
+        return true;
+    }
+    return false;
+}
 
 //record user guess
 document.onkeydown = function(event) {
@@ -43,12 +53,29 @@ document.onkeydown = function(event) {
     if(isValid) {
         userGuesses.push(userGuessKey);
         guesses.textContent = userGuesses;
-        // record the user guesses
+        numTries--;
+        
+        // check for a win
+        if(isGuessCorrect(userGuessKey)) {
+            userWins++;
+            numTries= 9;
+            userGuesses.length = 0;
+            document.getElementById("guesses").innerHTML="";
+            createComputerLetter();
+        } else if (isLoss()) {
+            // console.log("it sure was a loss");
+            userLosses++;
+            numTries=9;
+            userGuesses.length = 0;
+            document.getElementById("guesses").innerHTML="";
+            createComputerLetter();
+        }
 
+        //displays the starting number of guesses user has left
         guessesLeft.innerHTML = numTries;
-        // check if the user guess is correct
-        // if correct, increment wins and reset game
-        // if not correct, decrement numTries
-        // if numTries <= 0, increment losses and reset game
+        wins.innerHTML = userWins;
+        losses.innerHTML = userLosses;
     }
 };
+
+    
