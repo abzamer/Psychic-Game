@@ -1,2 +1,2 @@
 # Psychic-Game
-This is my psychic game
+https://abzamer.github.io/Psychic-Game/
